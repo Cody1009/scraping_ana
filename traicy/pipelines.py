@@ -1,6 +1,7 @@
 from scrapy import signals
 from scrapy.contrib.exporter import CsvItemExporter
-
+from gspread_connect import save_to_gsheet
+import pandas as pd
 
 #  csvファイルを出力するために必要
 class SalesPipeline(object):
@@ -20,6 +21,9 @@ class SalesPipeline(object):
         self.exporter.finish_exporting()
         self.file.close()
 
+
     def process_item(self, item, spider):
         self.exporter.export_item(item)
+        data = pd.read_csv('./output.csv')
+        save_to_gsheet(data)
         return item

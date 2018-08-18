@@ -31,6 +31,6 @@ class AnaSpider(scrapy.Spider):
 
     def close(self, reason):
         # 空のcsvファイルがないとエラーが出る
-        save_to_gsheet()
-
+        # save_to_gsheet()
+        pass
 
